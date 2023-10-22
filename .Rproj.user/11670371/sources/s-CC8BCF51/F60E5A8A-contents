@@ -1,0 +1,31 @@
+ppg <- read.csv('ppg.csv', header=T)
+ppg$first <- ppg$DRAFT2021_1 + ppg$DRAFT2020_1
+ppg$second <- ppg$DRAFT2021_2 + ppg$DRAFT2020_2
+ppg$third <- ppg$DRAFT2021_3 + ppg$DRAFT2020_3
+ppg$fourth <- ppg$DRAFT2021_4 + ppg$DRAFT2020_4
+ppg$PCTOFCAP <- ppg$PCTOFCAP*100
+ppg$PCTOFCAPSQ <- ppg$PCTOFCAP*ppg$PCTOFCAP
+
+plot(ppg$PCTOFCAP, ppg$PPG)
+
+mod1 <- lm(PPG~PCTOFCAP, data=ppg)
+summary(mod1)
+mod2 <- lm(PPG~PCTOFCAP+PCTOFCAPSQ+first+second+third+fourth, data=ppg)
+summary(mod2)
+mod3 <- lm(ppg2023~PCTOFCAP+first+second+third+fourth, data=ppg)
+summary(mod3)
+
+plot(x=predict(mod1), y=ppg$PCTOFCAP, ylim = c(0,30), xlim = c(0,30))
+abline(lm(ppg$PCTOFCAP~predict(mod1)))
+plot(x=predict(mod2), y=ppg$PCTOFCAP)
+abline(lm(ppg$PCTOFCAP~predict(mod2)))
+plot(x=predict(mod3), y=ppg$PCTOFCAP)
+abline(lm(ppg$PCTOFCAP~predict(mod3)))
+
+# Steelers:
+#2022: first = 1, second = 1, third = 0, fourth = 1
+#2021: first = 1, second = 1, third = 1, fourth = 1
+
+17.60 + 0.200*29.08 + 0.244*2 + 0.404 * 2 - 0.796 * 1 + -1.82 * 2
+psych::describe(ppg$PPG)
+psych::describe(ppg$ppg2023)
