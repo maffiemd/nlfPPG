@@ -27,6 +27,7 @@ ggplot(dat, aes(x = totalDraftCapital)) +
 ggplot(dat, aes(x = pctOfCap)) +
   geom_histogram(binwidth = 1, fill = "white", color = "black") +
   geom_vline(xintercept = 29.08, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = mean(dat$pctOfCap), color = "green", linetype = "dashed", size = 1) +
   labs(x = "Total Draft Capital", y = "Frequency", title = "Percent of Salary Cap Allocated to Offense")
 
 # Create the ggplot with points and the 1:1 line
