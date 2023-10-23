@@ -17,18 +17,18 @@ filtered_dat <- dat %>%
   mutate(row_index = row_number())
 
 # Create a histogram
+ggplot(dat, aes(x = pctOfCap)) +
+  geom_histogram(binwidth = 1, fill = "white", color = "black") +
+  geom_vline(xintercept = 34.61, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = mean(dat$pctOfCap), color = "green", linetype = "dashed", size = 1) +
+  labs(x = "Percent of Salary Cap", y = "Frequency", title = "Percent of Salary Cap Allocated to Offense")
+
+# Create a histogram
 ggplot(dat, aes(x = totalDraftCapital)) +
   geom_histogram(binwidth = 400, fill = "white", color = "black") +
   geom_vline(xintercept = 11799, color = "red", linetype = "dashed", size = 1) +
   geom_vline(xintercept = mean(dat$totalDraftCapital), color = "green", linetype = "dashed", size = 1) +
   labs(x = "Total Draft Capital", y = "Frequency", title = "Team Draft Capital Spent on Offense, 2018-2022")
-
-# Create a histogram
-ggplot(dat, aes(x = pctOfCap)) +
-  geom_histogram(binwidth = 1, fill = "white", color = "black") +
-  geom_vline(xintercept = 29.08, color = "red", linetype = "dashed", size = 1) +
-  geom_vline(xintercept = mean(dat$pctOfCap), color = "green", linetype = "dashed", size = 1) +
-  labs(x = "Total Draft Capital", y = "Frequency", title = "Percent of Salary Cap Allocated to Offense")
 
 # Create the ggplot with points and the 1:1 line
 ggplot(dat, aes(x = pctOfCap, y = PPG)) +
@@ -48,7 +48,7 @@ ggplot(dat, aes(x = predict(mod), y = PPG)) +
 ggplot(dat, aes(x = PPG)) +
   geom_histogram(binwidth = 1, fill = "white", color = "black") +
   geom_vline(xintercept = 17.2, color = "red", linetype = "dashed", size = 1) +
-  geom_vline(xintercept = mean(dat$PPG), color = "black", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = mean(dat$PPG), color = "blue", linetype = "dashed", size = 1) +
   labs(x = 'Points Per Game', y = 'Frequency', title = 'Points Per Game, 2018-2022')
 
 # Create the ggplot with points and the 1:1 line
@@ -63,12 +63,12 @@ ggplot(dat, aes(x = PPG)) +
 ggplot(dat, aes(x = PPG)) +
   geom_histogram(binwidth = 1, fill = "white", color = "black") +
   geom_vline(xintercept = 17.2, color = "red", linetype = "dashed", size = 1) +
-  geom_vline(xintercept = 22.09, color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = 22.48, color = "blue", linetype = "dashed", size = 1) +
   geom_vline(xintercept = mean(dat$PPG), color = "green", linetype = "dashed", size = 1) +
   labs(x = 'Points Per Game', y = 'Frequency', title = 'Points Per Game, 2018-2022')
 
 sd(dat$PPG)
 
 summary(mod)
-17.59+0.1020*29.08 + 0.00005112*13309 + 0.689
+17.59+0.1020*34.61 + 0.00005112*13309 + 0.689
   
