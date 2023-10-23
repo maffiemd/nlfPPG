@@ -91,7 +91,7 @@ returnYearValue(draft, shortppg[2,], 5)
 returnYearValue <- function(df, row, rounds) {
   a = list()
   for(i in 0:4){
-  d <- subsetYearTeam(df, as.character(row$TEAM), row$YEAR -1 -i, rounds)
+  d <- subsetYearTeam(df, as.character(row$TEAM), row$YEAR -i, rounds)
   b <- totalRoundValues(d, rounds)
   for(k in b){
     a = append(a, k)
