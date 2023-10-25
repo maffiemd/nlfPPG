@@ -1,4 +1,4 @@
-ppg <- read.csv('ppg.csv', header=T)
+
 ppg$first <- ppg$DRAFT2021_1 + ppg$DRAFT2020_1
 ppg$second <- ppg$DRAFT2021_2 + ppg$DRAFT2020_2
 ppg$third <- ppg$DRAFT2021_3 + ppg$DRAFT2020_3
